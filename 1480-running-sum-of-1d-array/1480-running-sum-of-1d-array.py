@@ -4,12 +4,12 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        n = 0 
-        arr = []
-        for num in nums:
-            n += num
-            arr.append(n)
-        return arr
+        '''
+        the given solution will optimize space to O(1)
+        '''
+        for i in range(1, len(nums)):
+            nums[i] += nums[i - 1]
+        return nums
 
 
 '''
