@@ -11,4 +11,4 @@ class Solution(object):
                 k += 1
         return k
 
-#to solve out of index boud compare i with i - 1. 
+#to solve indexoutofrangebound compare i with i - 1. 
