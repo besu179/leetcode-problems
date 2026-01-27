@@ -11,10 +11,11 @@ class Solution(object):
             for rng in ranges:
                 if (rng[0] == rng[-1]) and rng[0] == i:
                     discovered = True
+                    break
                 elif i >= rng[0] and i <= rng[-1]:
                     discovered = True
                     break
-                else:
-                     return False
+            if not discovered:
+                return False
         return discovered
         
