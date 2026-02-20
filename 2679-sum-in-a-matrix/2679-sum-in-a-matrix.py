@@ -17,4 +17,4 @@ class Solution(object):
             score += max(row)
             
         return score
-#sorted each row, traverse the matrix and add the maximum of each row to the score
+#sorted each row, transpose the matrix and add the maximum of each row to the score
