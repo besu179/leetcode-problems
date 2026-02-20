@@ -8,7 +8,7 @@ class Solution(object):
         rows = len(nums)
         cols = len(nums[0])
         for r in range(rows):
-            nums[r].sort().
+            nums[r].sort()
         matrix = [[0] * rows for _ in range(cols)] 
         for row in range(rows):
             for col in range(cols):
