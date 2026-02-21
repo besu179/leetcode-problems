@@ -5,7 +5,16 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        for i in range(len(nums)):
-            for j in range(i + 1, len(nums)):
-                if nums[i] + nums[j] == target:
-                    return [i, j]
+        seen = {}
+        
+        for i, num in enumerate(nums):
+            complement = target - num
+            
+            # If we've seen the number needed to reach the target, return
+            if complement in seen:
+                return [seen[complement], i]
+            
+            # Otherwise, add current number to the dictionary
+            seen[num] = i
+            
+        return []
