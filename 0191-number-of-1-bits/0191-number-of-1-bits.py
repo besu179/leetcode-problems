@@ -4,5 +4,10 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        num = Counter(bin(n)[2:])
-        return num["1"]
+        ans = 0
+
+        while n > 0:
+            if n & 1:
+                ans += 1
+            n >>= 1
+        return ans
