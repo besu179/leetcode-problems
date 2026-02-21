@@ -4,9 +4,5 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        num = bin(n)[2:]
-        ans = 0
-        for b in num:
-            if b == "1":
-                ans += 1
-        return ans
+        num = Counter(bin(n)[2:])
+        return num["1"]
