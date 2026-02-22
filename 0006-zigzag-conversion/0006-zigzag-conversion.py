@@ -5,6 +5,9 @@ class Solution(object):
         :type numRows: int
         :rtype: str
         """
+        if numRows <= 1:
+            return s
+            
         arr = [[] for i in range(numRows)]
         step = 1
         num = 0
