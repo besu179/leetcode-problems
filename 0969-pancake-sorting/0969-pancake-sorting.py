@@ -4,18 +4,20 @@ class Solution(object):
         :type arr: List[int]
         :rtype: List[int]
         """
-
         ans = []
-        for target in range(len(arr), 1, -1):
-            idx = arr.index(target)
+        n = len(arr)
+
+        while n > 1:
+            max_idx = arr.index(max(arr[:n]))
+
+            if max_idx != n - 1:
+                if max_idx != 0:
+                    ans.append(max_idx + 1)
+                    arr[:max_idx + 1] = arr[:max_idx + 1][::-1]
+                
+                ans.append(n)
+                arr[:n] = arr[:n][::-1]
             
-            if idx == target - 1:
-                continue
+            n -= 1
             
-            if idx != 0:
-                ans.append(idx + 1)
-                arr[:idx + 1] = arr[:idx + 1][::-1]
-            
-            ans.append(target)
-            arr[:target] = arr[:target][::-1]
         return ans
