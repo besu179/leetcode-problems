@@ -8,16 +8,14 @@ class Solution(object):
         n = len(arr)
 
         while n > 1:
-            max_idx = arr.index(max(arr[:n]))
+            max_index = arr[:n].index(max(arr[:n]))
 
-            if max_idx != n - 1:
-                if max_idx != 0:
-                    ans.append(max_idx + 1)
-                    arr[:max_idx + 1] = arr[:max_idx + 1][::-1]
-                
+            if max_index != n - 1:
+                if max_index != 0:
+                    arr[:max_index + 1] = arr[:max_index + 1][::-1]
+                    ans.append(max_index + 1)
                 ans.append(n)
                 arr[:n] = arr[:n][::-1]
-            
             n -= 1
             
         return ans
