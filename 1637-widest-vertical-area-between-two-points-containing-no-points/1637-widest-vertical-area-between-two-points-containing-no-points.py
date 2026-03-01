@@ -10,6 +10,6 @@ class Solution(object):
         prev = points[0]
 
         for point in points[1:]:
-            ans = max(abs(prev[0] - point[0]), ans)
+            ans = max((point[0] - prev[0]), ans)
             prev = point
         return ans
