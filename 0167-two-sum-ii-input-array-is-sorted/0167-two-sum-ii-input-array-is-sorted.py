@@ -8,10 +8,9 @@ class Solution(object):
         left = 0
         right = len(numbers) - 1
         while left < right:
-            addition_val = numbers[left] + numbers[right]
-            if addition_val == target:
+            if numbers[left] + numbers[right] == target:
                 return [left + 1, right + 1]
-            elif addition_val > target:
+            elif numbers[left] + numbers[right] > target:
                 right -= 1
             else:
                 left += 1
