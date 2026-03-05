@@ -8,3 +8,4 @@ class Solution(object):
 
         ans = [key * val for key, val in d]
         return "".join(ans)
+#.most_common() returns a list of tuples: [('e', 2), ('r', 1), ('t', 1)] from most frequent to less
