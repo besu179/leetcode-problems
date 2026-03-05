@@ -4,8 +4,7 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
-        d = Counter(s)
-        d = d.most_common()
+        d = Counter(s).most_common()
 
         ans = [key * val for key, val in d]
         return "".join(ans)
