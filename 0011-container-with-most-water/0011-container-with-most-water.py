@@ -10,7 +10,7 @@ class Solution(object):
         vol = 0
 
         while right < left:
-            min_height = min(height[left], height[right])
+            min_height = height[left] if height[right] > height[left] else height[right]
             width = left - right
             
             new_vol = min_height * width
