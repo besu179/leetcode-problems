@@ -10,3 +10,4 @@ class Solution(object):
         for j in range(n):
             nums1[m+j] = nums2[j]
         nums1.sort()
+        return nums1
