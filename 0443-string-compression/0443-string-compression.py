@@ -4,20 +4,21 @@ class Solution(object):
         :type chars: List[str]
         :rtype: int
         """
-        i = 0
-        count = 1
-        for j in range(1, len(chars) + 1):
-            if j < len(chars) and chars[j] == chars[j - 1]:
+        read = write = 0
+
+        while read < len(chars):
+            char = chars[read]
+            count = 0
+
+            while read < len(chars) and chars[read] == char:
                 count += 1
-            else:
-                chars[i] = chars[j - 1]
-                i += 1
-                
-                if count > 1:
-                    for digit in str(count):
-                        chars[i] = digit
-                        i += 1
-                
-                count = 1
-                
-        return i
+                read +=1
+            
+            chars[write] = char
+            write += 1
+            if count > 1:
+                for i in str(count):
+                    chars[write] = i
+                    write += 1
+
+        return write
