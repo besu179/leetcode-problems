@@ -5,9 +5,11 @@ class Solution(object):
         :type t: str
         :rtype: int
         """
-        iterat = iter(s)
+        i = 0
+        j = 0
 
-        for i, j in enumerate(t):
-            if j not in iterat:
-                return len(t) - i
-        return 0
+        while i < len(s) and j < len(t):
+            if s[i] == t[j]:
+                j += 1
+            i += 1
+        return len(t) - j
