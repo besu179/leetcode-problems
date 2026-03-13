@@ -15,8 +15,6 @@ class Solution(object):
                 j += 1
                 i += 1
                 ans += 1
-            elif s[j] < g[i]:
-                j += 1
             else:
-                i += 1
+                j += 1
         return ans
