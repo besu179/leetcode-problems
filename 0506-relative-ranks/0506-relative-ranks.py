@@ -4,19 +4,20 @@ class Solution(object):
         :type score: List[int]
         :rtype: List[str]
         """
-        sorted_score = sorted(score, reverse=True)
+        ss = sorted(score, reverse=True)
         ans = []
         dic = {}
 
-        for i in range(len(sorted_score)):
+        for i in range(len(ss)):
             if i == 0:
-                dic[sorted_score[i]] = "Gold Medal"
+                dic[ss[i]] = "Gold Medal"
             elif i == 1:
-                dic[sorted_score[i]] = "Silver Medal"
+                dic[ss[i]] = "Silver Medal"
             elif i == 2:
-                dic[sorted_score[i]] = "Bronze Medal"
+                dic[ss[i]] = "Bronze Medal"
             else:
-                dic[sorted_score[i]] = str(i + 1)
-        for sc in score:
-            ans.append(dic[sc])
+                dic[ss[i]] = str(i + 1)
+        for s in score:
+            ans.append(dic[s])
+
         return ans
