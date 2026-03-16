@@ -6,15 +6,21 @@ class Solution(object):
         :rtype: List[int]
         """
         phm = Counter(p)
-        thm = Counter(s[:len(p) - 1])
+        thm = Counter(s[:len(p)])
         ans = []
 
-        for r in range(len(p) - 1, len(s)):
+        if thm == phm:
+            ans.append(0)
+
+        for r in range(len(p), len(s)):
             thm[s[r]] += 1
+            
+            left_char = s[r - len(p)]
+            thm[left_char] -= 1
+            if thm[left_char] == 0:
+                del thm[left_char]
+
             if thm == phm:
                 ans.append(r - len(p) + 1)
-            thm[s[r - len(p) + 1]] -= 1
-            if thm[s[r - len(p) + 1]] == 0:
-                del thm[s[r - len(p) + 1]]
 
         return ans
