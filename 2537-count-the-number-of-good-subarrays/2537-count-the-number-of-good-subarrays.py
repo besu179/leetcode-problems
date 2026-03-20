@@ -5,17 +5,20 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
+        counter = Counter()
         n = len(nums)
-        same, right = 0, -1
-        cnt = Counter()
+        l = 0
+        pairs = 0
         ans = 0
-        for left in range(n):
-            while same < k and right + 1 < n:
-                right += 1
-                same += cnt[nums[right]]
-                cnt[nums[right]] += 1
-            if same >= k:
-                ans += n - right
-            cnt[nums[left]] -= 1
-            same -= cnt[nums[left]]
+        
+        for r, num in enumerate(nums):
+            pairs += counter[num]
+            counter[num] += 1
+            
+            while pairs >= k:
+                ans += n - r
+                counter[nums[l]] -= 1
+                pairs -= counter[nums[l]]
+                l += 1
+                
         return ans
