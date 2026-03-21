@@ -6,24 +6,25 @@ class Solution(object):
         :rtype: str
         """
         n = len(s)
+    
         diff = [0] * (n + 1)
         
-        for start, end, direction in shifts:
+        for l, r, direction in shifts:
             val = 1 if direction == 1 else -1
             
-            diff[start] += val
-            diff[end + 1] -= val
+            diff[l] += val
+            if r + 1 < n:
+                diff[r + 1] -= val
         
-        current_shift = 0
-        res = list(s)
+        for i in range(1, n):
+            diff[i] += diff[i - 1]
+        
+        ans = []
         
         for i in range(n):
-            current_shift += diff[i]
+            shift = diff[i] % 26
             
-            original_pos = ord(res[i]) - ord('a')
-            
-            new_pos = (original_pos + current_shift) % 26
-            
-            res[i] = chr(new_pos + ord('a'))
-            
-        return "".join(res)
+            char = chr((ord(s[i]) - ord('a') + shift) % 26 + ord('a'))
+            ans.append(char)
+        
+        return "".join(ans)
