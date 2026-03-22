@@ -5,4 +5,15 @@ class Solution(object):
         :type k: int
         :rtype: None Do not return anything, modify nums in-place instead.
         """
+        k %= len(nums)
         nums[:] = nums[-k:] + nums[:-k]
+
+        """
+        n = len(nums)
+        k %= n
+        while k:
+            nums.insert(0, nums.pop())
+            k -= 1
+
+            TLE
+        """
