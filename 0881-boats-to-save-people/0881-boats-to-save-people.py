@@ -11,12 +11,8 @@ class Solution(object):
         l, r = 0, len(people) - 1
 
         while l <= r:
-            if people[r] == limit:
-                ans += 1
-            elif people[r] + people[l] <= limit:
-                ans += 1
+            if people[r] + people[l] <= limit:
                 l += 1
-            else:
-                ans += 1
+            ans += 1
             r -= 1
         return ans
