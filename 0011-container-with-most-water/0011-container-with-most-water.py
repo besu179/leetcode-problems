@@ -4,21 +4,17 @@ class Solution(object):
         :type height: List[int]
         :rtype: int
         """
-        right = 0
-        left = len(height) - 1
-        width = 0
-        vol = 0
+        vol = l = width = 0
+        r = len(height) - 1
 
-        while right < left:
-            min_height = height[left] if height[right] > height[left] else height[right]
-            width = left - right
-            
-            new_vol = min_height * width
-            if new_vol > vol:
-                vol = new_vol
-            if height[right] > height[left]:
-                left -= 1
+        while l < r:
+            min_height = min(height[l], height[r])
+            width = r - l
+
+            vol = max(min_height * width, vol)
+
+            if height[l] > height[r]:
+                r -= 1
             else:
-                right += 1
-
+                l += 1
         return vol
