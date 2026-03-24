@@ -5,15 +5,15 @@ class Solution(object):
         :rtype: int
         """
         n = len(s)
-        left, ans = 0, n
-        ctr = Counter(s)
+        l, ans = 0, n
+        hm = Counter(s)
         
-        for right in range(n):                               
-            ctr[s[right]] -= 1                              
+        for r in range(n):                               
+            hm[s[r]] -= 1                              
 
-            while left < n and 4*max(ctr.values()) <= n:    
-                ans = min(ans, right-left+1)                
-                ctr[s[left]] += 1 
-                left += 1
+            while l < n and 4*max(hm.values()) <= n:    
+                ans = min(ans, r-l+1)                
+                hm[s[l]] += 1 
+                l += 1
 
         return ans
