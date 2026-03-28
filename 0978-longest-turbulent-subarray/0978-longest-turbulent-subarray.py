@@ -4,19 +4,15 @@ class Solution(object):
         :type arr: List[int]
         :rtype: int
         """
-        n = len(A)        
-        ans = 1
+        n = len(A)
         l = 0
-        def get_comp(a, b):
-            if a < b: return 0
-            if a > b: return 1
-            return -1
-
+        ans = 1
+        
         for r in range(1, n):
-            c = get_comp(A[r-1], A[r])
-            if c == -1:
+            if A[r] == A[r-1]:
                 l = r
-            elif r > 1 and c == get_comp(A[r-2], A[r-1]):
+            elif r > 1 and (A[r-2] < A[r-1] < A[r] or A[r-2] > A[r-1] > A[r]):
                 l = r - 1
             ans = max(ans, r - l + 1)
+            
         return ans
