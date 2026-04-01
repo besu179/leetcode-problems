@@ -15,7 +15,3 @@ class Solution(object):
             slow = slow.next
             fast = fast.next.next
         return slow
-# this algorithm works by creating 2 pointers named fst and slow pointers 
-# the concept is fast pointer goes twice as fast as the slow one therefor
-# if fast pointer is at the end of the linked list slow must be in the middle
-# 
