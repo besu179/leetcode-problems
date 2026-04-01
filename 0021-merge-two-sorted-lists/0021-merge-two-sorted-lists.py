@@ -20,7 +20,7 @@ class Solution(object):
             else:
                 answer.next = list2
                 list2 = list2.next
-            answer = answer.next 
+            answer = answer.next
         answer.next = list2 or list1
 
         return node.next
