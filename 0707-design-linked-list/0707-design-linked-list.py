@@ -7,30 +7,33 @@ class MyLinkedList(object):
 
     def __init__(self):
         self.head = None
+        self.tail = None
+        self.size = 0
 
     def get(self, index):
         """
         :type index: int
         :rtype: int
         """
-        count = 0
+        if index >= self.size:
+            return -1
         cur = self.head
-        while cur:
-            if count == index:
-                return cur.val
+        for _ in range(index):
             cur = cur.next
-            count += 1
-        return -1
-
+        return cur.val
+        
     def addAtHead(self, val):
         """
         :type val: int
         :rtype: None
         """
         dummy = Node(val)
-
         dummy.next = self.head
         self.head = dummy
+
+        if self.size == 0:
+            self.tail = dummy
+        self.size += 1
         
 
     def addAtTail(self, val):
@@ -38,16 +41,14 @@ class MyLinkedList(object):
         :type val: int
         :rtype: None
         """
-        cur = self.head
         dummy = Node(val)
+        if self.size == 0:
+            self.head = self.tail = dummy
+        else:
+            self.tail.next = dummy
+            self.tail = dummy
+        self.size += 1
 
-        if not self.head:
-            self.head = dummy
-            return
-
-        while cur.next:
-            cur = cur.next
-        cur.next = dummy
 
     def addAtIndex(self, index, val):
         """
@@ -56,21 +57,21 @@ class MyLinkedList(object):
         :rtype: None
         """
         dummy = Node(val)
-        cur = self.head
-
+        if index > self.size:
+            return
+        if index == self.size:
+            self.addAtTail(val)
+            return
         if index == 0:
             self.addAtHead(val)
             return
-
-        for _ in range(index-1):
-            
-            if not cur:
-                return
+        cur = self.head
+        for _ in range(index - 1):
             cur = cur.next
-        if not cur:
-            return
         dummy.next = cur.next
         cur.next = dummy
+
+        self.size += 1
 
 
     def deleteAtIndex(self, index):
@@ -78,22 +79,25 @@ class MyLinkedList(object):
         :type index: int
         :rtype: None
         """
-        cur = self.head
-
-        if not self.head:
-            return 
-
+        if index >= self.size:
+            return
         if index == 0:
             self.head = self.head.next
+            if self.size == 1:
+                self.tail = None
+            self.size -= 1
             return
 
+        cur = self.head
         for _ in range(index - 1):
-            if not cur or not cur.next:
-                return
             cur = cur.next
-        if not cur.next:
-            return
+
         cur.next = cur.next.next
+
+        if index == self.size - 1:
+            self.tail = cur
+
+        self.size -= 1
 
 
 # Your MyLinkedList object will be instantiated and called as such:
