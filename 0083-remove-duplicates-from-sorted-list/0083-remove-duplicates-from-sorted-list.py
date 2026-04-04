@@ -9,11 +9,11 @@ class Solution(object):
         :type head: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
-        curr = head
-        
-        while curr and curr.next:
-            if curr.next.val == curr.val:
-                curr.next = curr.next.next
-                continue
-            curr = curr.next
+        cur = head
+
+        while cur and cur.next:
+            if cur.val == cur.next.val:
+                cur.next = cur.next.next
+            else:
+                cur = cur.next
         return head
