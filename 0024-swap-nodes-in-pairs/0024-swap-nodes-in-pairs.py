@@ -9,11 +9,18 @@ class Solution(object):
         :type head: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
-        if not head or not head.next:  
-            return head
-        
-        temp = head.next  
-        head.next = self.swapPairs(temp.next)  
-        temp.next = head 
-        
-        return temp
+        dummy = ListNode(0)
+        dummy.next = head
+        prev = dummy
+
+        while prev.next and prev.next.next:
+            first = prev.next
+            second = prev.next.next
+
+            first.next = second.next
+            second.next = first
+            prev.next = second
+
+            prev = first
+
+        return dummy.next
