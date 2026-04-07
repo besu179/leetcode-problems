@@ -14,30 +14,22 @@ class Solution(object):
         if not head:
             return None
 
+        if not head:
+            return None
+
+        hm = {}
+
         cur = head
-
         while cur:
-            node = Node(cur.val)   
-            node.next = cur.next
-            cur.next = node
-            cur = node.next
-        
-        temp = head
-        while temp:
-            node = temp.next
-            if temp.random:
-                node.random = temp.random.next
-            temp = node.next
+            hm[cur] = Node(cur.val)
+            cur = cur.next
 
-        new_head = head.next
-        temp = head
-        while temp:
-            node = temp.next
+        cur = head
+        while cur:
+            if cur.next:
+                hm[cur].next = hm[cur.next]
+            if cur.random:
+                hm[cur].random = hm[cur.random]
+            cur = cur.next
 
-            temp.next = node.next
-            if node.next:
-                node.next = node.next.next
-
-            temp = temp.next
-
-        return new_head
+        return hm[head]
