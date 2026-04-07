@@ -4,17 +4,14 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        stk = [] # create a python list to act as a stack
-        pairs = { "(":")", "{":"}", "[":"]" } # pairs of values that close each other
+        stk = []
+        pairs = {"(": ")", "{": "}", "[": "]"}
 
         for char in s:
-            if char in pairs.keys():
+            if char in pairs:
                 stk.append(char)
-            elif char in pairs.values():
-                if not stk:
+            else:
+                if not stk or pairs[stk.pop()] != char:
                     return False
-                if pairs.get(stk[-1]) == char:
-                    stk.pop(len(stk) - 1)
-                else:
-                    return False
-        return len(stk) == 0 # returns the length of stack being 0 or not (empty is true)
+        
+        return not stk
