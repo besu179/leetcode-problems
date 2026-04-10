@@ -4,14 +4,13 @@ class Solution(object):
         :type logs: List[str]
         :rtype: int
         """
-        ans = 0
+        stack = []
 
         for log in logs:
-            if log == "../":
-                if ans > 0:
-                    ans -= 1
+            if stack and log == "../":
+                stack.pop()
             elif log == "./":
                 continue
             else:
-                ans += 1
-        return ans                 
+                stack.append(log)
+        return len(stack)
