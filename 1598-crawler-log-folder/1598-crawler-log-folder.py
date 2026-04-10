@@ -7,8 +7,9 @@ class Solution(object):
         stack = []
 
         for log in logs:
-            if stack and log == "../":
-                stack.pop()
+            if log == "../":
+                if stack:
+                    stack.pop()
             elif log == "./":
                 continue
             else:
