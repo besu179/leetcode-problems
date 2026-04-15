@@ -4,10 +4,8 @@ class Solution(object):
         :type s: List[str]
         :rtype: None Do not return anything, modify s in-place instead.
         """
-        front = 0
-        back = len(s) - 1
-        while front < back:
-            s[front], s[back] = s[back], s[front]
-            front += 1
-            back -= 1
-        return s
+        def reverse(l, r):
+            if l < r:
+                s[l], s[r] = s[r], s[l]
+                reverse(l + 1, r - 1)
+        reverse(0, len(s) - 1)
