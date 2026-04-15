@@ -4,9 +4,14 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        c = Counter(s)
+        c = {}
+        q = deque()
 
-        for i in range(len(s)):
-            if c[s[i]] == 1:
-                return i
-        return -1
+        for i, char in enumerate(s):
+            c[char] = c.get(char, 0) + 1
+            q.append((char, i))
+
+            while q and c[q[0][0]] > 1:
+                q.popleft()
+
+        return q[0][1] if q else -1
