@@ -15,29 +15,29 @@ class Solution(object):
 
         n = 0
         cur = head
-        while cur:
-            n += 1
-            cur = cur.next
 
-        part_size = n // k
-        extra = n % k
+        while cur:
+            cur = cur.next
+            n += 1
+        
+        size = n // k
+        remainder = n % k
 
         ans = []
         cur = head
 
         for i in range(k):
-            head_part = cur
-            size = part_size + (1 if i < extra else 0)
+            ans.append(cur)
 
-            for j in range(size - 1):
+            cur_size = size + (1 if i < remainder else 0)
+
+            for j in range(cur_size - 1):
                 if cur:
                     cur = cur.next
-
+                
             if cur:
-                next_part = cur.next
+                next_head = cur.next
                 cur.next = None
-                cur = next_part
-
-            ans.append(head_part)
-
+                cur = next_head
         return ans
+            
