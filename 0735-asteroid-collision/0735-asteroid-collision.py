@@ -8,10 +8,10 @@ class Solution(object):
 
         for a in asteroids:
             while stack and a < 0 < stack[-1]:
-                if -a > stack[-1]:
+                if abs(a) > stack[-1]:
                     stack.pop()
                     continue
-                elif -a == stack[-1]:
+                elif abs(a) == stack[-1]:
                     stack.pop()
                 break
             else: stack.append(a)
